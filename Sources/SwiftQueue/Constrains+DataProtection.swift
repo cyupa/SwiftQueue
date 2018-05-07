@@ -14,9 +14,12 @@ internal final class DataProtectionConstraint: JobConstraint {
     private weak var actual: SqOperation?
 
     func dataProtectionStateDidChange(notification: NSNotification) {
-        if UIApplication.shared.isProtectedDataAvailable {
-            actual?.run()
-            NotificationCenter.default.removeObserver(self)
+        DispatchQueue.main.async {
+            let isLocked = !UIApplication.shared.isProtectedDataAvailable
+            if isLocked {
+                actual?.run()
+                NotificationCenter.default.removeObserver(self)
+            }
         }
     }
 
@@ -29,8 +32,9 @@ internal final class DataProtectionConstraint: JobConstraint {
             return true
         }
 
-        if UIApplication.shared.isProtectedDataAvailable {
-            return true
+        DispatchQueue.main.sync {
+            let isLocked = !UIApplication.shared.isProtectedDataAvailable
+            return isLocked
         }
 
         NotificationCenter.default.addObserver(self, selector: Selector(("dataProtectionStateDidChange:")), name: NSNotification.Name.UIApplicationProtectedDataDidBecomeAvailable, object: nil)
