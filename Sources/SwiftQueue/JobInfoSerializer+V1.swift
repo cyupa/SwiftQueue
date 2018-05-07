@@ -59,22 +59,23 @@ internal extension JobInfo {
 
     func toDictionary() -> [String: Any] {
         var dict = [String: Any]()
-        dict[JobInfoKeys.type.stringValue]            = self.type
-        dict[JobInfoKeys.uuid.stringValue]            = self.uuid
-        dict[JobInfoKeys.override.stringValue]        = self.override
-        dict[JobInfoKeys.group.stringValue]           = self.group
-        dict[JobInfoKeys.tags.stringValue]            = Array(self.tags)
-        dict[JobInfoKeys.delay.stringValue]           = self.delay
-        dict[JobInfoKeys.deadline.stringValue]        = self.deadline.map(dateFormatter.string)
-        dict[JobInfoKeys.requireNetwork.stringValue]  = self.requireNetwork.rawValue
-        dict[JobInfoKeys.isPersisted.stringValue]     = self.isPersisted
-        dict[JobInfoKeys.params.stringValue]          = self.params
-        dict[JobInfoKeys.createTime.stringValue]      = dateFormatter.string(from: self.createTime)
-        dict[JobInfoKeys.runCount.stringValue]        = self.runCount
-        dict[JobInfoKeys.maxRun.stringValue]          = self.maxRun.rawValue
-        dict[JobInfoKeys.retries.stringValue]         = self.retries.rawValue
-        dict[JobInfoKeys.interval.stringValue]        = self.interval
-        dict[JobInfoKeys.requireCharging.stringValue] = self.requireCharging
+        dict[JobInfoKeys.type.stringValue]                  = self.type
+        dict[JobInfoKeys.uuid.stringValue]                  = self.uuid
+        dict[JobInfoKeys.override.stringValue]              = self.override
+        dict[JobInfoKeys.group.stringValue]                 = self.group
+        dict[JobInfoKeys.tags.stringValue]                  = Array(self.tags)
+        dict[JobInfoKeys.delay.stringValue]                 = self.delay
+        dict[JobInfoKeys.deadline.stringValue]              = self.deadline.map(dateFormatter.string)
+        dict[JobInfoKeys.requireNetwork.stringValue]        = self.requireNetwork.rawValue
+        dict[JobInfoKeys.isPersisted.stringValue]           = self.isPersisted
+        dict[JobInfoKeys.params.stringValue]                = self.params
+        dict[JobInfoKeys.createTime.stringValue]            = dateFormatter.string(from: self.createTime)
+        dict[JobInfoKeys.runCount.stringValue]              = self.runCount
+        dict[JobInfoKeys.maxRun.stringValue]                = self.maxRun.rawValue
+        dict[JobInfoKeys.retries.stringValue]               = self.retries.rawValue
+        dict[JobInfoKeys.interval.stringValue]              = self.interval
+        dict[JobInfoKeys.requireCharging.stringValue]       = self.requireCharging
+        dict[JobInfoKeys.requireDataProtection.stringValue] = self.requireDataProtection
         return dict
     }
 
@@ -94,6 +95,7 @@ internal extension JobInfo {
         dictionary.assign(JobInfoKeys.retries.stringValue, &self.retries, Limit.fromRawValue)
         dictionary.assign(JobInfoKeys.runCount.stringValue, &self.runCount)
         dictionary.assign(JobInfoKeys.requireCharging.stringValue, &self.requireCharging)
+        dictionary.assign(JobInfoKeys.requireDataProtection.stringValue, &self.requireDataProtection)
     }
 }
 

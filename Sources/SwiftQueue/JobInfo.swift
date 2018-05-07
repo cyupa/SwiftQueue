@@ -51,7 +51,11 @@ public struct JobInfo {
     /// Current number of run
     var runCount: Double
 
+    /// Require device charging.
     var requireCharging: Bool
+
+    /// Require data protection (device locked) available.
+    var requireDataProtection: Bool
 
     /// Current number of repetition. Transient value
     var currentRepetition: Int
@@ -71,7 +75,8 @@ public struct JobInfo {
          maxRun: Limit = .limited(0),
          retries: Limit = .limited(0),
          runCount: Double = 0,
-         requireCharging: Bool = false) {
+         requireCharging: Bool = false,
+         requireDataProtection: Bool = false) {
 
         self.type = type
         self.uuid = uuid
@@ -89,6 +94,7 @@ public struct JobInfo {
         self.retries = retries
         self.runCount = runCount
         self.requireCharging = requireCharging
+        self.requireDataProtection = requireDataProtection
 
         /// Transient
         self.currentRepetition = 0

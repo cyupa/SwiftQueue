@@ -56,6 +56,7 @@ extension JobInfo: Decodable {
         case retries = "retries"
         case runCount = "interval"
         case requireCharging = "requireCharging"
+        case requireDataProtection = "requireDataProtection"
     }
 
     public init(from decoder: Decoder) throws {
@@ -77,6 +78,7 @@ extension JobInfo: Decodable {
         let retries: Limit = try container.decode(Limit.self, forKey: .retries)
         let runCount: Double = try container.decode(Double.self, forKey: .runCount)
         let requireCharging: Bool = try container.decode(Bool.self, forKey: .requireCharging)
+        let requireDataProtection: Bool = try container.decode(Bool.self, forKey: .requireDataProtection)
 
         self.init(
                 type: type,
@@ -94,7 +96,8 @@ extension JobInfo: Decodable {
                 maxRun: maxRun,
                 retries: retries,
                 runCount: runCount,
-                requireCharging: requireCharging)
+                requireCharging: requireCharging,
+                requireDataProtection: requireDataProtection)
     }
 }
 
@@ -118,6 +121,7 @@ extension JobInfo: Encodable {
         try container.encode(retries, forKey: .retries)
         try container.encode(runCount, forKey: .runCount)
         try container.encode(requireCharging, forKey: .requireCharging)
+        try container.encode(requireDataProtection, forKey: .requireDataProtection)
     }
 }
 

@@ -93,8 +93,15 @@ public final class JobBuilder {
         return self
     }
 
+    /// Job should require charging.
     public func requireCharging(value: Bool) -> Self {
         info.requireCharging = value
+        return self
+    }
+
+    /// Job should require data protection (device locked).
+    public func requireDataProtection(value: Bool) -> Self {
+        info.requireDataProtection = value
         return self
     }
 
