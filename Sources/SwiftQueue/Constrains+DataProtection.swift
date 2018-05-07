@@ -32,9 +32,14 @@ internal final class DataProtectionConstraint: JobConstraint {
             return true
         }
 
+        var isLocked = false
         DispatchQueue.main.sync {
-            let isLocked = !UIApplication.shared.isProtectedDataAvailable
-            return isLocked
+            isLocked = !UIApplication.shared.isProtectedDataAvailable
+
+        }
+        
+        if isLocked {
+            return true
         }
 
         NotificationCenter.default.addObserver(self, selector: Selector(("dataProtectionStateDidChange:")), name: NSNotification.Name.UIApplicationProtectedDataDidBecomeAvailable, object: nil)
