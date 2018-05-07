@@ -48,7 +48,8 @@ internal final class SqOperation: Operation {
             DelayConstraint(),
             UniqueUUIDConstraint(),
             NetworkConstraint(),
-            BatteryChargingConstraint()
+            BatteryChargingConstraint(),
+            DataProtectionConstraint
         ]
 
         super.init()
