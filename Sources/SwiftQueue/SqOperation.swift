@@ -49,7 +49,7 @@ internal final class SqOperation: Operation {
             UniqueUUIDConstraint(),
             NetworkConstraint(),
             BatteryChargingConstraint(),
-            DataProtectionConstraint
+            DataProtectionConstraint()
         ]
 
         super.init()
